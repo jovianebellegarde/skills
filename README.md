@@ -1,7 +1,5 @@
 # skills
 
-Reusable Copilot customizations for durable memory, guardrails, and workflow automation.
-
 ## Included skill
 
 ### Log-memory skill

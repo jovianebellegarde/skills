@@ -4,9 +4,9 @@ Private-to-public skills repository for reusable Copilot workflows.
 
 ## Included skill
 
-### Memory-log skill
+### Log-memory skill
 
-Path: `.github/skills/memory-log/`
+Path: `.github/skills/log-memory/`
 
 This skill provides durable memory management by `project` and `topic` with:
 
@@ -17,7 +17,7 @@ This skill provides durable memory management by `project` and `topic` with:
 
 ## Memory storage layout
 
-The memory-log skill stores records in:
+The log-memory skill stores records in:
 
 - `.github/memories/active/`
 - `.github/memories/archive/`
@@ -28,7 +28,7 @@ The repository tracks only folder placeholders (`.gitkeep`) so personal memory c
 ## Quick usage
 
 ```bash
-python .github/skills/memory-log/scripts/memory_store.py upsert \
+python .github/skills/log-memory/scripts/memory_store.py upsert \
   --project "FieldOps-Copilot" \
   --topic "trust-evals" \
   --text "Use citations, approval gates, and regression evals."

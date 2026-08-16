@@ -26,6 +26,7 @@ Use this skill to manage durable memory records by `project` and `topic`.
    - Check for existing active memory by project/topic.
    - If found: update it (append update entry + refresh metadata).
    - If not found: create a new memory record.
+   - Duplicate guard: if incoming content already exists in the project's active memory body, do not create a duplicate record.
 
 2. **Archive**
    - Archive only when the user explicitly asks to archive.
@@ -62,6 +63,7 @@ Commands:
 - Treat `upsert` as the default action for “remember this” style requests.
 - Require explicit user intent for `archive` and `delete`.
 - Prefer `recover` if a memory was removed by mistake.
+- Prevent duplicates by default: merge into existing project memory when content is already represented.
 
 ## Memory detail standard (default quality bar)
 

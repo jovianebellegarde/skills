@@ -47,6 +47,32 @@ def write_text(path: Path, content: str) -> None:
     path.write_text(content, encoding="utf-8")
 
 
+def normalize_text(value: str) -> str:
+    return " ".join(value.strip().lower().split())
+
+
+def extract_memory_body(content: str) -> str:
+    parts = content.split("# Memory", 1)
+    if len(parts) < 2:
+        return content
+    tail = parts[1]
+    body = tail.split("## Update Log", 1)[0]
+    return body.strip()
+
+
+def find_duplicate_memory(project: str, text: str) -> Path | None:
+    project_dir = ACTIVE / slug(project)
+    if not project_dir.exists():
+        return None
+    incoming = normalize_text(text)
+    for candidate in sorted(project_dir.glob("*.md")):
+        existing = load_text(candidate)
+        existing_body = normalize_text(extract_memory_body(existing))
+        if incoming and incoming in existing_body:
+            return candidate
+    return None
+
+
 def build_new_memory(project: str, topic: str, text: str) -> str:
     timestamp = now_iso()
     return (
@@ -76,8 +102,21 @@ def upsert(project: str, topic: str, text: str) -> None:
     ensure_dirs()
     path = memory_path(ACTIVE, project, topic)
     if path.exists():
-        write_text(path, append_update(load_text(path), text))
+        existing = load_text(path)
+        if normalize_text(text) in normalize_text(existing):
+            print(f"no-op-duplicate-update: {path}")
+            return
+        write_text(path, append_update(existing, text))
         print(f"updated: {path}")
+        return
+    duplicate = find_duplicate_memory(project, text)
+    if duplicate:
+        duplicate_text = (
+            f"dedupe: requested topic '{topic}' matched existing memory "
+            f"'{duplicate.stem}', so no new memory file was created"
+        )
+        write_text(duplicate, append_update(load_text(duplicate), duplicate_text))
+        print(f"deduped-into-existing: {duplicate}")
         return
     write_text(path, build_new_memory(project, topic, text))
     print(f"created: {path}")

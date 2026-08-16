@@ -26,3 +26,8 @@ python .github/skills/memory-log/scripts/memory_store.py recover \
   --topic "trust-evals-design" \
   --from archive
 ```
+
+## Duplicate prevention
+
+- If the same content is saved again for the same project/topic, the skill performs a no-op update.
+- If the same content is saved under a new topic but already exists in active memory for that project, the skill deduplicates into the existing memory instead of creating a duplicate file.

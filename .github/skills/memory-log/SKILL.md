@@ -62,3 +62,20 @@ Commands:
 - Treat `upsert` as the default action for “remember this” style requests.
 - Require explicit user intent for `archive` and `delete`.
 - Prefer `recover` if a memory was removed by mistake.
+
+## Memory detail standard (default quality bar)
+
+When saving or updating memory, prefer high-detail structured captures over short summaries.
+
+Default include list:
+
+- Decision context and why it was chosen
+- Problem framing and user/workflow framing
+- Detailed implementation shape (components, layers, responsibilities)
+- Trust/safety and evaluation requirements
+- Concrete examples and edge cases
+- Suggested stack/layout when relevant
+- Interview-defensibility or explainability points when relevant
+- Clear next-step readiness notes
+
+If the user explicitly asks for brief memory, follow that override. Otherwise, store the fuller version.

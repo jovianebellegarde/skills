@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+
+.github/memories/active/*
+.github/memories/archive/*
+.github/memories/trash/*
+!.github/memories/active/.gitkeep
+!.github/memories/archive/.gitkeep
+!.github/memories/trash/.gitkeep

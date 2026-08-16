@@ -1,5 +1,5 @@
 ---
-name: memory
+name: memory-log
 description: >-
   Private memory manager for project/topic knowledge. Upserts existing memories
   or creates new ones, archives only on explicit request, and recovers archived
@@ -9,7 +9,7 @@ compatibility: >-
   records under .github/memories.
 ---
 
-# Memory Skill (Private)
+# Memory Log Skill
 
 Use this skill to manage durable memory records by `project` and `topic`.
 
@@ -45,7 +45,7 @@ Use this skill to manage durable memory records by `project` and `topic`.
 Run the helper script:
 
 ```bash
-python .github/skills/memory/scripts/memory_store.py <command> [flags]
+python .github/skills/memory-log/scripts/memory_store.py <command> [flags]
 ```
 
 Commands:

@@ -1,6 +1,6 @@
 # skills
 
-Private-to-public skills repository for reusable Copilot workflows.
+Reusable Copilot customizations for durable memory, guardrails, and workflow automation.
 
 ## Included skill
 

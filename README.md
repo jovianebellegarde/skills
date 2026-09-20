@@ -1,6 +1,6 @@
 # skills
 
-## Included skill
+## Included skills
 
 ### Log-memory skill
 
